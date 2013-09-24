@@ -4,7 +4,7 @@
 
   var Bullet = Asteroids.Bullet = function(pos, vel, game) {
     var RADIUS = 5;
-    var COLOR = "red";
+    var COLOR = "#6E1A1A";
 
     this.game = game
     var radius = RADIUS;

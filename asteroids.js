@@ -5,7 +5,7 @@
   //questino about where to define constants
 
   var Asteroid = Asteroids.Asteroid = function(pos, vel) {
-    var COLOR = "blue";
+    var COLOR = "#20308C";
     var RADIUS = 20;
     var radius = RADIUS;
     var color = COLOR;

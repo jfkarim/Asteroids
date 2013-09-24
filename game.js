@@ -24,7 +24,7 @@
   Game.prototype.draw = function() {
     //console.log(this.ship);
     this.ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y); // ?
-
+    this.ctx.drawImage(this.img, 0, 0, 1000, 1000);
     this.ship.draw(this.ctx);
 
     for (var i = 0; i < this.asteroids.length; i++) {
@@ -117,9 +117,17 @@
   }
 
   Game.prototype.start = function(canvasEl) {
+
     game = this;
     game.bindKeyHandlers();
     game.ctx = canvasEl.getContext("2d"); // was var before
+
+    game.img = new Image();
+    game.img.onload = function () {
+      game.ctx.drawImage(game.img, 0, 0, 1000, 1000);
+    };
+    game.img.src = './pic1.jpg';
+
     this.interId = window.setInterval(function() {
       game.step();
     }, 30); // fps constant?

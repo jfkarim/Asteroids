@@ -3,7 +3,7 @@
 
   var Ship = Asteroids.Ship = function(pos, vel) {
     var RADIUS = 10;
-    var COLOR = "green";
+    var COLOR = "#1F8025";
     var radius = RADIUS;
     var color = COLOR;
 

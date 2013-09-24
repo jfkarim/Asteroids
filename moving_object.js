@@ -25,8 +25,10 @@
       2 * Math.PI,
       false
     );
-
     ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.linewidth = 5;
+    ctx.stroke();
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {
