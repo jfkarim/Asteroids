@@ -71,13 +71,12 @@ var curriedSum = function(numArgs) {
 Function.prototype.curry = function(numArgs) {
   var that = this;
   var numbers = [];
-  var obj;
 
   var _curried = function(number) {
     numbers.push(number);
 
     if (numbers.length === numArgs) {
-      return that.apply(obj, numbers);
+      return that.apply(undefined, numbers);
     } else {
       return _curried;
     }
