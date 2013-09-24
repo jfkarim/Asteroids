@@ -8,8 +8,8 @@
   var Asteroid = Asteroids.Asteroid = function(pos, vel) {
     var COLOR = "blue";
     var RADIUS = 20;
-    radius = RADIUS;
-    color = COLOR;
+    var radius = RADIUS;
+    var color = COLOR;
     Asteroids.MovingObject.call(this, pos, vel, radius, color);
   }
   Asteroid.inherits(Asteroids.MovingObject);

@@ -22,7 +22,6 @@
   }
 
   MovingObject.prototype.draw = function(ctx) {
-    console.log('called');
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
@@ -48,7 +47,7 @@
     var dy = thisY - otherY;
     var distance = Math.sqrt(dx * dx + dy * dy);
     combinedRadii = this.radius + otherObject.radius;
-    return (combinedRadii < distance);
+    return (combinedRadii > distance);
   }
 
 })(this);

@@ -5,6 +5,7 @@
     this.ctx = ctx;
     this.DIM_X = 1000;
     this.DIM_Y = 1000;
+    this.ship = new Asteroids.Ship([500, 500], [0,0]);
     this.asteroids = [];
     this.addAsteroids(5);
   };
@@ -20,14 +21,16 @@
   };
 
   Game.prototype.draw = function() {
-    // console.log(typeof(this.ctx));
+    console.log(this.ship);
     this.ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y); // ?
+    this.ship.draw(this.ctx);
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
     }
   };
 
   Game.prototype.move = function() {
+    this.ship.move();
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].move();
     }
@@ -38,12 +41,27 @@
     //console.log(this.asteroids);
     this.move();
     this.draw();
+    this.checkCollisions();
   };
+
+  Game.prototype.checkCollisions = function() {
+    for (i = 0; i < this.asteroids.length; i++) {
+      if (this.asteroids[i].isCollidedWith(this.ship)) {
+        alert("Game Over!")
+        this.stop();
+        break;
+      }
+    }
+  }
+
+  Game.prototype.stop = function() {
+    clearInterval(this.interId);
+  }
 
   Game.prototype.start = function(canvasEl) {
     game = this;
     game.ctx = canvasEl.getContext("2d"); // was var before
-    window.setInterval(function() {
+    this.interId = window.setInterval(function() {
       game.step();
     }, 30); // fps constant?
   };
