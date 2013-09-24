@@ -60,11 +60,20 @@
 
   Game.prototype.start = function(canvasEl) {
     game = this;
+    game.bindKeyHandlers();
     game.ctx = canvasEl.getContext("2d"); // was var before
     this.interId = window.setInterval(function() {
       game.step();
     }, 30); // fps constant?
   };
+
+  Game.prototype.bindKeyHandlers = function() {
+    var that = this;
+    key('a', function(){ that.ship.power([-10,0]); });
+    key('d', function(){ that.ship.power([10,0]); });
+    key('w', function(){ that.ship.power([0,-10]); });
+    key('s', function(){ that.ship.power([0,10]); });
+  }
 
 })(this);
 
