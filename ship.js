@@ -19,4 +19,24 @@
     this.vel[1] += impulse[1];
   }
 
+  Ship.prototype.fireBullet = function(game) {
+    // var vel = [this.vel[0] * 2, this.vel[1] * 2];
+
+    //console.log(this.vel);
+    var speed = Math.sqrt(this.vel[0] * this.vel[0] + this.vel[1] * this.vel[1]);
+    if (speed === 0) {
+      return null;
+    }
+
+    var dirX = this.vel[0] / speed;
+    var dirY = this.vel[1] / speed;
+    var vel = [dirX * 100, dirY * 100];
+    var newPos = [this.pos[0], this.pos[1]];
+
+    var bullet = new Asteroids.Bullet(newPos, vel, game);
+    //console.log(this.vel);
+    return bullet;
+  }
+
+
 })(this);

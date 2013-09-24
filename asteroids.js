@@ -2,7 +2,6 @@
   //var inherits = require("./inherits.js");
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-
   //questino about where to define constants
 
   var Asteroid = Asteroids.Asteroid = function(pos, vel) {

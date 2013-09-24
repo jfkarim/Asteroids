@@ -8,6 +8,7 @@
     this.ship = new Asteroids.Ship([500, 500], [0,0]);
     this.asteroids = [];
     this.addAsteroids(5);
+    this.bullets = [];
   };
 
   Game.prototype.addAsteroids = function(numAsteroids) {
@@ -21,18 +22,29 @@
   };
 
   Game.prototype.draw = function() {
-    console.log(this.ship);
+    //console.log(this.ship);
     this.ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y); // ?
+
     this.ship.draw(this.ctx);
+
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
+    }
+
+    for (i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].draw(this.ctx);
     }
   };
 
   Game.prototype.move = function() {
     this.ship.move();
+
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].move();
+    }
+
+    for (i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].move();
     }
   };
 
@@ -52,6 +64,21 @@
         break;
       }
     }
+
+    var indices = [];
+    for (var i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].hitAsteroids();
+    }
+  }
+
+  Game.prototype.removeAsteroid = function(asteroid) {
+    var index = this.asteroids.indexOf(asteroid);
+    this.asteroids.splice(index, 1);
+  }
+
+  Game.prototype.removeBullet = function(bullet) {
+    var index = this.bullets.indexOf(bullet);
+    this.bullets.splice(index, 1);
   }
 
   Game.prototype.stop = function() {
@@ -73,6 +100,13 @@
     key('d', function(){ that.ship.power([10,0]); });
     key('w', function(){ that.ship.power([0,-10]); });
     key('s', function(){ that.ship.power([0,10]); });
+
+    key('f', function(){
+      var bullet = that.ship.fireBullet(that);
+      if (bullet) {
+        that.bullets.push(bullet);
+      }
+    });
   }
 
 })(this);
