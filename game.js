@@ -54,7 +54,38 @@
     this.move();
     this.draw();
     this.checkCollisions();
+    this.checkBounds();
   };
+
+  Game.prototype.isOutOfBounds = function(obj) {
+    if (obj.pos[0] < 0 || obj.pos[1] < 0) {
+      return true;
+    }
+
+    if (obj.pos[0] > this.DIM_X || obj.pos[1] > this.DIM_Y) {
+      return true;
+    }
+
+    return false;
+  };
+
+  Game.prototype.checkBounds = function() {
+    for (var i = 0; i < this.asteroids.length; i++) {
+      if (this.isOutOfBounds(this.asteroids[i])) {
+        this.asteroids[i].remove();
+      }
+    }
+
+    for (var i = 0; i < this.bullets.length; i++) {
+      if (this.isOutOfBounds(this.bullets[i])) {
+        this.bullets[i].remove();
+      }
+    }
+
+    if (this.isOutOfBounds(this.ship)) {
+      this.ship.remove();
+    }
+  }
 
   Game.prototype.checkCollisions = function() {
     for (i = 0; i < this.asteroids.length; i++) {
@@ -96,10 +127,10 @@
 
   Game.prototype.bindKeyHandlers = function() {
     var that = this;
-    key('a', function(){ that.ship.power([-10,0]); });
-    key('d', function(){ that.ship.power([10,0]); });
-    key('w', function(){ that.ship.power([0,-10]); });
-    key('s', function(){ that.ship.power([0,10]); });
+    key('a', function(){ that.ship.power([-5,0]); });
+    key('d', function(){ that.ship.power([5,0]); });
+    key('w', function(){ that.ship.power([0,-5]); });
+    key('s', function(){ that.ship.power([0,5]); });
 
     key('f', function(){
       var bullet = that.ship.fireBullet(that);

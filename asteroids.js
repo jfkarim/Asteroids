@@ -24,4 +24,9 @@
     return new Asteroid(randPos, randVel);
   }
 
+  Asteroid.prototype.remove = function() {
+    this.pos[0] = (this.pos[0] + 1000) % 1000;
+    this.pos[1] = (this.pos[1] + 1000) % 1000;
+  }
+
 })(this);

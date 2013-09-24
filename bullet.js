@@ -3,7 +3,7 @@
   console.log("Entered bullet.js");
 
   var Bullet = Asteroids.Bullet = function(pos, vel, game) {
-    var RADIUS = 2;
+    var RADIUS = 5;
     var COLOR = "red";
 
     this.game = game
@@ -22,5 +22,10 @@
       }
     }
   };
+
+  Bullet.prototype.remove = function() {
+    this.game.removeBullet(this);
+  }
+
 
 })(this);
