@@ -4,24 +4,24 @@ Function.prototype.inherits = function(superclass) {
   this.prototype = new Surrogate(); //this refers to function
 };
 
-function MovingObject(name) {
-  this.name = name;
-};
-
-MovingObject.prototype.test = function() {
-  console.log("test");
-};
-
-
-
-function Ship () {};
-Ship.inherits(MovingObject);
-
-function Asteroid () {};
-Asteroid.inherits(MovingObject);
-Asteroid.prototype.showName = function() {
-  console.log(this.name);
-};
+// function MovingObject(name) {
+//   this.name = name;
+// };
+//
+// MovingObject.prototype.test = function() {
+//   console.log("test");
+// };
+//
+//
+//
+// function Ship () {};
+// Ship.inherits(MovingObject);
+//
+// function Asteroid () {};
+// Asteroid.inherits(MovingObject);
+// Asteroid.prototype.showName = function() {
+//   console.log(this.name);
+// };
 
 
 // testAsteroid = new Asteroid();

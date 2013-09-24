@@ -1,24 +1,27 @@
 (function (root) {
-  var inherits = require("./inherits.js");
+  //var inherits = require("./inherits.js");
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-  var Asteroid.COLOR = "blue";
-  var Asteroid.RADIUS = 20;
 
-  var Asteroid = Asteroids.Asteroid = function (pos, vel) {
-    radius = Asteroid.RADIUS;
-    color = Asteroid.COLOR;
-    MovingObject.call(this, pos, vel, radius, color);
+  //questino about where to define constants
+
+  var Asteroid = Asteroids.Asteroid = function(pos, vel) {
+    var COLOR = "blue";
+    var RADIUS = 20;
+    radius = RADIUS;
+    color = COLOR;
+    Asteroids.MovingObject.call(this, pos, vel, radius, color);
   }
-  Asteroid.inherits(MovingObject);
+  Asteroid.inherits(Asteroids.MovingObject);
 
-  var Asteroid.randomAsteroid = function(dimX, dimY) {
+  Asteroid.randomAsteroid = function(dimX, dimY) {
     var randX = Math.random() * dimX;
     var randY = Math.random() * dimY;
     var randPos = [randX, randY];
 
-    var randVel = Math.random() * 100;
-
+    var randDX = Math.random() * 30 - 15;
+    var randDY = Math.random() * 30 - 15;
+    var randVel = [randDX, randDY];
     return new Asteroid(randPos, randVel);
   }
 

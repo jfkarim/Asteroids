@@ -9,16 +9,26 @@
   }
 
   MovingObject.prototype.move = function() {
-    //movement, update pos based on time and velocity
+    this.pos[0] = (this.pos[0] + this.vel[0]) % 1000
+    this.pos[1] = (this.pos[1] + this.vel[1]) % 1000
+
+    if (this.pos[0] < 0) {
+      this.pos[0] += 1000;
+    }
+
+    if (this.pos[1] < 0) {
+      this.pos[1] += 1000;
+    }
   }
 
   MovingObject.prototype.draw = function(ctx) {
-    ctx.fillStyle = "black";
+    console.log('called');
+    ctx.fillStyle = this.color;
     ctx.beginPath();
 
     ctx.arc(
-      this.centerX,
-      this.centerY,
+      this.pos[0],
+      this.pos[1],
       this.radius,
       0,
       2 * Math.PI,
